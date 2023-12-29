@@ -1,0 +1,16 @@
+name = "MLP_momentum"
+version = "1.0.0"
+authors = [
+  { name="Gabriel Ribeiro", email="gabrielc.ribeiro@hotmail.com" },
+]
+description = "My first Multilayer Perceptron."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/sundae-driver/MyFirstPackage.git"
