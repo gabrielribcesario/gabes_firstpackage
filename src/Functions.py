@@ -1,11 +1,10 @@
 class Func():
+  
   def sigmoid(X):
     return (1/(1+np.exp(-X)))
   
-  def der_sigmoid(X):    
-    def sigmoid(X):
-      return (1/(1+np.exp(-X)))
-    sigma = sigmoid(X)
+  def der_sigmoid(X):
+    sigma = Func().sigmoid(X)
     return (sigma*(1 - sigma))
   
   def der_tanh(X):
