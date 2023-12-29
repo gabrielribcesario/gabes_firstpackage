@@ -1,46 +1,9 @@
 from copy import deepcopy
 import numpy as np
+import Func
 
 class MyLittlePonyM():
   
-  class Func():
-
-    def sigmoid(X):
-      return (1/(1+np.exp(-X)))
-
-    def der_sigmoid(X):    
-      def sigmoid(X):
-        return (1/(1+np.exp(-X)))
-      sigma = sigmoid(X)
-      return (sigma*(1 - sigma))
-
-    def der_tanh(X):
-      return np.cosh(X)**-2
-
-    def ReLU(X):
-      return (X + abs(X))/2
-
-    def der_ReLU(X):
-      return (X > 0) * 1
-
-    def sinc(X):
-      return np.sin(X)/X
-
-    def der_sinc(X):
-      return (X*np.cos(X) - np.sin(X))/X**2
-
-    def x_squared(X):
-      return X**2
-
-    def der_x_squared(X):
-      return 2*X
-
-    def lse(x, y):
-      return (x - y)**2
-
-    def acc(x, y):
-      return ( (x >= .5)*1 != y)*1
-      
   def __init__(self, x_shape, n_epocas = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, func_intermed = 'ReLU', metric = 'lse'):
     
     self.ran_epochs = 0
@@ -54,9 +17,9 @@ class MyLittlePonyM():
     self.Input = [0]*(layers+1); self.output = [0]*(layers+2)
     self.init_weights(x_shape)
 
-    self.g = getattr(self.Func, func_intermed)
-    self.der_g = getattr(self.Func, 'der_' + func_intermed)
-    self.metric = getattr(self.Func, metric)
+    self.g = getattr(Func, func_intermed)
+    self.der_g = getattr(Func, 'der_' + func_intermed)
+    self.metric = getattr(Func, metric)
 
     self.es = False
     self.patience = 0
@@ -85,12 +48,12 @@ class MyLittlePonyM():
       if i != len(self.weights) - 1:
         self.output[i + 1] = self.g(self.Input[i])
       else:
-        self.output[i + 1] = self.Func.sigmoid(self.Input[i])
+        self.output[i + 1] = Func.sigmoid(self.Input[i])
     return
 
 
   def backward(self, X, y, prev):
-    delta = (y - self.output[-1]) * self.Func.der_sigmoid(self.Input[-1])
+    delta = (y - self.output[-1]) * Func.der_sigmoid(self.Input[-1])
     self.weights[-1] = self.weights[-1] + self.eta * delta * np.append(-1, self.output[-2])
     e_k = delta * self.weights[-1][1:]
 
@@ -110,7 +73,7 @@ class MyLittlePonyM():
 
       for j, k in zip(X, y):
         self.foward(j)
-        erro += self.Func.lse(self.output[-1], k)
+        erro += Func.lse(self.output[-1], k)
         self.backward(j, k, peso_ant[-1])
       self.ran_epochs += 1
       self.erro.append(erro)
@@ -118,7 +81,7 @@ class MyLittlePonyM():
 
       for m,n in zip(x_val, y_val):
         self.foward(m)
-        erro_val += self.Func.lse(self.output[-1], n)
+        erro_val += Func.lse(self.output[-1], n)
         metric += self.metric(self.output[-1], n)
       self.erro_val.append(erro_val)
 
@@ -142,3 +105,4 @@ class MyLittlePonyM():
         self.foward(i)
         y.append(self.output[-1])
     return (np.array(y) >= .5)*1
+
