@@ -1,7 +1,3 @@
-from copy import deepcopy
-import numpy as np
-import Func
-
 class MyLittlePonyM():
   
   def __init__(self, x_shape, n_epocas = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, func_intermed = 'ReLU', metric = 'lse'):
