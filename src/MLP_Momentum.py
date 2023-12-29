@@ -1,6 +1,6 @@
 class MyLittlePonyM():
   
-  def __init__(self, x_shape, n_epocas = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, func_intermed = 'ReLU', metric = 'lse'):
+  def __init__(self, n_epocas = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, func_intermed = 'ReLU', metric = 'lse'):
     
     self.ran_epochs = 0
     self.max_epochs = n_epocas
@@ -11,7 +11,6 @@ class MyLittlePonyM():
     self.hiddenLayers = layers
     self.neuronsPerHiddenLayer = neurons_layer
     self.Input = [0]*(layers+1); self.output = [0]*(layers+2)
-    self.init_weights(x_shape)
 
     self.g = getattr(Func, func_intermed)
     self.der_g = getattr(Func, 'der_' + func_intermed)
@@ -38,6 +37,7 @@ class MyLittlePonyM():
     return
 
   def foward(self, X):
+    self.init_weights(X.shape)
     self.output[0] = X
     for i, weights in enumerate(self.weights):
       self.Input[i] = np.dot(weights, np.append(-1, self.output[i]))
