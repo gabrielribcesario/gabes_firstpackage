@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools", "numpy", "copy"]
+
+[project]
 name = "MLP_momentum"
 version = "1.0.0"
 authors = [
@@ -14,3 +18,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/sundae-driver/MyFirstPackage.git"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
