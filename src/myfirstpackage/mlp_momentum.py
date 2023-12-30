@@ -60,7 +60,7 @@ class MyLittlePonyM():
       e_k = np.dot(self.weights[-L].T[1:], e_k)
     return
 
-  def treino(self, X, y, x_val, y_val):
+  def train(self, X, y, x_val, y_val):
     self.init_weights(X.shape)
     prev_weights = [deepcopy(self.weights), deepcopy(self.weights)]
     best_metric = 0; patienceSpent = 0
