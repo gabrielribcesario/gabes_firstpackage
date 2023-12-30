@@ -3,10 +3,10 @@ from .functions import Func
 
 class MyLittlePonyM():
   
-  def __init__(self, n_epocas = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, func_intermed = 'ReLU', metric = 'lse'):
+  def __init__(self, n_epochs = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, act_func = 'ReLU', metric = 'lse'):
     
     self.ran_epochs = 0
-    self.max_epochs = n_epocas
+    self.max_epochs = n_epochs
     self.eta = learning_rate
     self.alpha = momentum
     self.erro = []; self.erro_val = []
@@ -15,8 +15,8 @@ class MyLittlePonyM():
     self.neuronsPerHiddenLayer = neurons_layer
     self.Input = [0]*(layers+1); self.output = [0]*(layers+2)
 
-    self.g = getattr(Func, func_intermed)
-    self.der_g = getattr(Func, 'der_' + func_intermed)
+    self.g = getattr(Func, act_func)
+    self.der_g = getattr(Func, 'der_' + act_func)
     self.metric = getattr(Func, metric)
 
     self.es = False
@@ -40,7 +40,6 @@ class MyLittlePonyM():
     return
 
   def foward(self, X):
-    self.init_weights(X.shape)
     self.output[0] = X
     for i, weights in enumerate(self.weights):
       self.Input[i] = np.dot(weights, np.append(-1, self.output[i]))
@@ -65,6 +64,7 @@ class MyLittlePonyM():
     return
 
   def treino(self, X, y, x_val, y_val):
+    self.init_weights(X.shape)
     peso_ant = [deepcopy(self.weights), deepcopy(self.weights)]
     best_metric = 0; patienceSpent = 0
     for i in range(self.max_epochs):
