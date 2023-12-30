@@ -22,4 +22,4 @@ https://colab.research.google.com/drive/1qCntDWHbeOd_MaeNS36MUYEs4SXMZhLo?usp=sh
 
 Like I've previously said, this was just a personal project so that I could improve some of my skills, so I took a simplistic approach for most things. 
 
-I do not intend to make changes to this project for a long while, but I do hope some other student stumbles upon it and makes good use of it.
+I don't intend to make any changes to this project for a long while, but I do hope some other student stumbles upon it and makes good use of it.
