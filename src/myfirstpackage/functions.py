@@ -6,7 +6,7 @@ class Func():
     return (1/(1+np.exp(-X)))
   
   def der_sigmoid(X):
-    sigma = Func().sigmoid(X)
+    sigma = Func.sigmoid(X)
     return (sigma*(1 - sigma))
   
   def der_tanh(X):
