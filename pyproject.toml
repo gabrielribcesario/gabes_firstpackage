@@ -1,5 +1,5 @@
 [project]
-name = "myfirstpackage"
+name = "gabes_firstpackage"
 version = "1.0.3"
 authors = [
   { name="Gabriel Ribeiro", email="gabrielc.ribeiro@hotmail.com" },
@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sundae-driver/myfirstpackage.git"
+Homepage = "https://github.com/sundae-driver/gabes_firstpackage.git"
 
 [build-system]
 requires = ["setuptools", "setuptools-scm"]
