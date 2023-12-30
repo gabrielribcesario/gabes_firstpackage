@@ -9,7 +9,7 @@ This also my first time using a repository (and therefore GitHub). Long story sh
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install gabes_firstpackage.
 
 ```bash
-pip install --index-url https://test.pypi.org/simple/ gabes_firstpackage
+pip install -i https://test.pypi.org/simple/ gabes_firstpackage
 ```
 
 ## Sucess!
