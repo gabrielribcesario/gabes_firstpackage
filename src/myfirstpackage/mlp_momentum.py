@@ -1,4 +1,4 @@
-from func import Func
+from functions import Func
 
 class MyLittlePonyM():
   
