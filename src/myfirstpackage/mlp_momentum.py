@@ -1,5 +1,5 @@
-from functions import Func
-
+from __init__ import *
+from .functions import Func
 class MyLittlePonyM():
   
   def __init__(self, n_epocas = 100, learning_rate = .001, neurons_layer = 2, layers = 2, momentum = 0.0001, func_intermed = 'ReLU', metric = 'lse'):

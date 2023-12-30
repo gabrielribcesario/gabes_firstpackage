@@ -1,3 +1,5 @@
+from __init__ import *
+
 class Func():
   
   def sigmoid(X):
