@@ -9,7 +9,7 @@ class MyLittlePonyM():
     self.max_epochs = n_epochs
     self.eta = learning_rate
     self.alpha = momentum
-    self.erro = []; self.erro_val = []
+    self.error = []; self.error_val = []
 
     self.hiddenLayers = layers
     self.neuronsPerHiddenLayer = neurons_layer
@@ -54,48 +54,46 @@ class MyLittlePonyM():
     delta = (y - self.output[-1]) * Func.der_sigmoid(self.Input[-1])
     self.weights[-1] = self.weights[-1] + self.eta * delta * np.append(-1, self.output[-2])
     e_k = delta * self.weights[-1][1:]
-
     for L in range(2, self.hiddenLayers + 2):
-      self.weights[-L] = np.add(self.weights[-L],
-                                np.dot((self.eta * e_k * self.der_g(self.Input[-L]))[:][np.newaxis].T,
-                                       np.append(-1, self.output[-L - 1])[:][np.newaxis])) + self.alpha * (self.weights[-L] - prev[-L])
-
+      self.weights[-L] += np.dot((self.eta*e_k*self.der_g(self.Input[-L])).reshape(-1,1),
+                                       np.append(-1, self.output[-L-1]).reshape(1,-1)) + self.alpha*(self.weights[-L] - prev[-L])
       e_k = np.dot(self.weights[-L].T[1:], e_k)
     return
 
   def treino(self, X, y, x_val, y_val):
     self.init_weights(X.shape)
-    peso_ant = [deepcopy(self.weights), deepcopy(self.weights)]
+    prev_weights = [deepcopy(self.weights), deepcopy(self.weights)]
     best_metric = 0; patienceSpent = 0
     for i in range(self.max_epochs):
-      erro = 0; erro_val = 0; metric = 0
-
+      error = 0; error_val = 0; metric = 0
+      #training set
       for j, k in zip(X, y):
         self.foward(j)
-        erro += Func.lse(self.output[-1], k)
-        self.backward(j, k, peso_ant[-1])
+        error += Func.lse(self.output[-1], k)
+        self.backward(j, k, prev_weights[-1])
       self.ran_epochs += 1
-      self.erro.append(erro)
-      peso_ant.pop(); peso_ant.insert(0, deepcopy(self.weights))
-
+      self.error.append(error)
+      prev_weights.pop(); prev_weights.insert(0, deepcopy(self.weights))
+      #validation set
       for m,n in zip(x_val, y_val):
         self.foward(m)
-        erro_val += Func.lse(self.output[-1], n)
+        error_val += Func.lse(self.output[-1], n)
         metric += self.metric(self.output[-1], n)
-      self.erro_val.append(erro_val)
-
+      self.error_val.append(error_val)
+      #save best performing model
       if metric < best_metric or i == 0:
-        best_metric = metric; melhor_peso = deepcopy(self.weights)
-
+        best_metric = metric; best_weight = deepcopy(self.weights)
+      #early stopping
       if self.es and self.startEpoch <= self.ran_epochs:
-        if self.erro_val[-1] <= min(self.erro_val):
+        if self.error_val[-1] <= min(self.error_val):
           patienceSpent = 0
         else:
           patienceSpent += 1
         if patienceSpent == self.patience:
           print('Early Stopping. Ran Epochs: ', self.ran_epochs)
           break
-    self.weights = melhor_peso
+    #save best performing model
+    self.weights = best_weight
     return
 
   def classificador(self, X):
