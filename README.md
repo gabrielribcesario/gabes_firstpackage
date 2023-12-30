@@ -14,7 +14,7 @@ pip install -i https://test.pypi.org/simple/ gabes_firstpackage
 
 ## Sucess!
 
-As of 30/12/2023 15:29 UTC-3 I've sucessfully distributed a working version of gabes_firstpackage. I used a local host on Google Colab to try it out on some small datasets I had. You may find my results on the following links:
+As of 30/12/2023 20:49 UTC-3 I've sucessfully distributed a working version of gabes_firstpackage. I used a local host on Google Colab to try it out on some small datasets I had. You may find my results on the following links:
 
 https://colab.research.google.com/drive/1NOMsq0moVhtMWS-GGYQInNpougVmDplP?usp=sharing
 
