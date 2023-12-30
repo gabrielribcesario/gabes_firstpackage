@@ -35,4 +35,5 @@ class Func():
   
   def acc(x, y):
     return ( (x >= .5)*1 != y)*1
-  
+
+    

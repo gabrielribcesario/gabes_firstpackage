@@ -96,10 +96,14 @@ class MyLittlePonyM():
     self.weights = best_weight
     return
 
-  def classificador(self, X):
+  def classifier(self, X):
     y = []
     for i in X:
         self.foward(i)
         y.append(self.output[-1])
     return (np.array(y) >= .5)*1
+
+  def score(self, X, y):
+    y_pred = self.classifier(X)
+    return sum((y == y_pred))/len(y)*100
 
