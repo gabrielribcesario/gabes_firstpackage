@@ -14,7 +14,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/sundae-driver/my-first-package.git"
+Homepage = "https://github.com/sundae-driver/myfirstpackage.git"
 
 [build-system]
 requires = ["setuptools", "setuptools-scm"]
