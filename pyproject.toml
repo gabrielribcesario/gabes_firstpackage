@@ -1,5 +1,5 @@
 [project]
-name = "MLP_momentum"
+name = "MyFirstPackage"
 version = "1.0.0"
 authors = [
   { name="Gabriel Ribeiro", email="gabrielc.ribeiro@hotmail.com" },
