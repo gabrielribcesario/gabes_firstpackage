@@ -1,5 +1,5 @@
 [project]
-name = "my-first-package"
+name = "myfirstpackage"
 version = "1.0.1"
 authors = [
   { name="Gabriel Ribeiro", email="gabrielc.ribeiro@hotmail.com" },
