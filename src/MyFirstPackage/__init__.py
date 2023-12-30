@@ -1,10 +1,8 @@
-from copy import deepcopy
-from os import listdir
-from os.path import abspath, dirname, isfile, join
 import numpy as np
+from copy import deepcopy
 
 #https://stackoverflow.com/a/23093013
-
+"""
 # get folder name of __init__.py
 init_dir = dirname(abspath(__file__))
 # get all python files
@@ -14,5 +12,5 @@ for file_name in listdir(init_dir):
     py_files.append(file_name.replace(".py", ""))
 # remove this __init__ file from the list
 py_files.remove("__init__")
-
 __all__ = py_files
+"""
