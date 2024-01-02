@@ -1,10 +1,14 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "gabes_firstpackage"
-version = "1.1.1"
+version = "1.1.2"
 authors = [
   { name="Gabriel Ribeiro", email="gabrielc.ribeiro@hotmail.com" },
 ]
-description = "My first Multilayer Perceptron."
+description = "My first Multilayer Perceptron and package distribution."
 readme = "README.md"
 requires-python = ">=3.9"
 classifiers = [
@@ -12,10 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = ["numpy"]
 
 [project.urls]
-Homepage = "https://github.com/sundae-driver/gabes_firstpackage.git"
-
-[build-system]
-requires = ["setuptools", "setuptools-scm"]
-build-backend = "setuptools.build_meta"
+Homepage = "https://github.com/gabrielribcesario/gabes_firstpackage"
