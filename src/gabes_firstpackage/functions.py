@@ -1,4 +1,5 @@
 from .__init__ import *
+from sklearn.metrics import roc_auc_score
 
 class Func():
   
@@ -30,10 +31,22 @@ class Func():
   def der_x_squared(X):
     return 2*X
   
-  def lse(x, y):
-    return (x - y)**2
+  def mse(x, y):
+    return sum((x - y)**2)/y.shape[0]
   
   def acc(x, y):
-    return ( (x >= .5)*1 != y)*1
+    return sum(((x >= .5)*1 == y)*1)
+
+  def roc_auc(x, y):
+    return roc_auc_score(y, x)
+
+  def log_loss(x, y):
+    x = np.array(x); y = np.array(y)
+    if len(x.shape)>1:
+      x = x.reshape(-1)
+    if len(y.shape)>1:
+      y = y.reshape(-1)
+    return -np.squeeze(sum(y*np.log(x)
+                           + (1 - y)*np.log1p(-x)))/len(y)
 
     

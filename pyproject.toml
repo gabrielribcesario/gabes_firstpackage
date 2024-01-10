@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gabes_firstpackage"
-version = "1.1.2"
+version = "1.2.0"
 authors = [
   { name="Gabriel Ribeiro", email="gabrielc.ribeiro@hotmail.com" },
 ]
@@ -16,7 +16,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-dependencies = ["numpy"]
+dependencies = ["numpy", "sklearn"]
 
 [project.urls]
 Homepage = "https://github.com/gabrielribcesario/gabes_firstpackage"
