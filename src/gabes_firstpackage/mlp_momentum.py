@@ -68,7 +68,7 @@ class MyLittlePonyM():
       #training set
       for j, k in zip(X, y):
         self.foward(j)
-        error += Func.lse(self.output[-1], k)
+        error += Func.mse(self.output[-1], k)
         self.backward(j, k, prev_weights[-1])
       self.ran_epochs += 1
       self.error.append(error)
@@ -76,7 +76,7 @@ class MyLittlePonyM():
       #validation set
       for m,n in zip(x_val, y_val):
         self.foward(m)
-        error_val += Func.lse(self.output[-1], n)
+        error_val += Func.mse(self.output[-1], n)
         metric.append([self.output[-1], n])
       self.error_val.append(error_val)     
       #save best performing model

@@ -32,21 +32,22 @@ class Func():
     return 2*X
   
   def mse(x, y):
+    x, y = Func.reshape_input(x, y)
     return sum((x - y)**2)/y.shape[0]
   
   def acc(x, y):
+    x, y = Func.reshape_input(x, y)
     return sum(((x >= .5)*1 == y)*1)
 
   def roc_auc(x, y):
     return roc_auc_score(y, x)
 
   def log_loss(x, y):
-    x = np.array(x); y = np.array(y)
-    if len(x.shape)>1:
-      x = x.reshape(-1)
-    if len(y.shape)>1:
-      y = y.reshape(-1)
+    x, y = Func.reshape_input(x, y)
     return -np.squeeze(sum(y*np.log(x)
                            + (1 - y)*np.log1p(-x)))/len(y)
+
+  def reshape_input(x, y):
+    return [np.array(x).reshape(-1), np.array(y).reshape(-1)]   
 
     
